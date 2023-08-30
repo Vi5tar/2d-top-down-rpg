@@ -82,5 +82,19 @@ GameTile *GameTile::getTile(int key)
         return new GameTile("assets/16x16Tiles/dw-town.png", true, true);
     if (key == 50)
         return new GameTile("assets/16x16Tiles/dw-brick.png", false, true);
+    if (key == 51)
+        return new GameTile("assets/16x16Tiles/dw-redBrickFloor.png", true, true);
+    if (key == 52)
+        return new GameTile("assets/16x16Tiles/dw-electricFloor.png", true, true);
+    if (key == 53)
+        return new GameTile("assets/16x16Tiles/dw-door.png", false, true);
+    if (key == 54)
+        return new GameTile("assets/16x16Tiles/dw-desk.png", false, true);
+    if (key == 55)
+        return new GameTile("assets/16x16Tiles/dw-treasureChest.png", true, true);
+    if (key == 56)
+        return new GameTile("assets/16x16Tiles/dw-brickStairsUp.png", true, true);
+    if (key == 57)
+        return new GameTile("assets/16x16Tiles/dw-brickStairsDown.png", true, true);
     return new GameTile("", false, false);
 }
