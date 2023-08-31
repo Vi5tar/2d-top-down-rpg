@@ -6,17 +6,16 @@
 #include "gameTile.cpp"
 #include "gameWorld.cpp"
 #include "mapName.h"
+#include "windowConfig.h"
 
 int main()
 {
     GameWorld gameWorld = GameWorld(MapName::WORLD);
 
-    int windowTileWidth = 25;
-    int windowTileHeight = 25;
-    int tileWidth = 48;
-    int tileHeight = 48;
-    float windowWidth = windowTileWidth * tileWidth;
-    float windowHeight = windowTileHeight * tileHeight;
+    sf::Vector2u tileSize = gameWorld.currentMap.tiles[0][0]->sprite.getTexture()->getSize();
+    sf::Vector2f scaledTileSize(tileSize.x * SCALE_X, tileSize.y * SCALE_Y);
+    float windowWidth = WINDOW_TILES_WIDE * scaledTileSize.x;
+    float windowHeight = WINDOW_TILES_HIGH * scaledTileSize.y;
 
     sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Dragon Warrior World Map");
     window.setFramerateLimit(60);
@@ -52,16 +51,16 @@ int main()
         window.clear();
 
         //NOTE:: draw the world map
-        int startDrawnWorldX = gameWorld.player->getX() - ((windowTileWidth / 2));
-        int startDrawnWorldY = gameWorld.player->getY() - ((windowTileHeight / 2));
-        for (int i = 0; i < windowTileHeight; i++)
+        int startDrawnWorldX = gameWorld.player->getX() - ((WINDOW_TILES_WIDE / 2));
+        int startDrawnWorldY = gameWorld.player->getY() - ((WINDOW_TILES_HIGH / 2));
+        for (int i = 0; i < WINDOW_TILES_HIGH; i++)
         {
-            for (int j = 0; j < windowTileWidth; j++)
+            for (int j = 0; j < WINDOW_TILES_WIDE; j++)
             {
                 if (gameWorld.currentMap.tiles.size() > (startDrawnWorldY + i) && gameWorld.currentMap.tiles[startDrawnWorldY + i].size() > (startDrawnWorldX + j))
                 {
                     GameTile *tile = gameWorld.currentMap.tiles[startDrawnWorldY + i][startDrawnWorldX + j];
-                    tile->sprite.setPosition(j * tileWidth, i * tileHeight);
+                    tile->sprite.setPosition(j * scaledTileSize.x, i * scaledTileSize.y);
                     window.draw(tile->sprite);
                 } else {
                     // NOTE: this was causing massive cpu usage when outside the map boundaries were visible in the window
@@ -73,7 +72,7 @@ int main()
         }
 
         //NOTE:: draw the player
-        sf::Vector2f position((windowTileWidth / 2) * tileWidth, (windowTileHeight / 2) * tileHeight);
+        sf::Vector2f position((WINDOW_TILES_WIDE / 2) * scaledTileSize.x, (WINDOW_TILES_HIGH / 2) * scaledTileSize.y);
         int step = (int)std::round((std::chrono::duration_cast<std::chrono::milliseconds>(startTime.time_since_epoch()).count() / 100) / 3 % 2);
         gameWorld.player->setSprite(position, step);
         window.draw(gameWorld.player->sprite);

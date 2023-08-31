@@ -1,4 +1,5 @@
 #include "gameTile.h"
+#include "windowConfig.h"
 
 GameTile::GameTile(std::string textureName, bool walkable, bool exit)
 {
@@ -16,7 +17,7 @@ bool GameTile::setUpSprite(std::string textureName)
         return false;
 
     sprite.setTexture(texture);
-    sprite.setScale(3, 3);
+    sprite.setScale(SCALE_X, SCALE_Y);
 
     return true;
 }

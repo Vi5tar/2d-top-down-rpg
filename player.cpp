@@ -1,5 +1,6 @@
 #include <iostream>
 #include "player.h"
+#include "windowConfig.h"
 
 Player::Player()
 {
@@ -48,6 +49,6 @@ void Player::setSprite(sf::Vector2f position, int step)
     std::string texturePath = "assets/16x16Tiles/dw-hero-" + std::to_string((int)orientation) + "-" + std::to_string(step) + ".png";
     texture.loadFromFile(texturePath);
     sprite.setTexture(texture);
-    sprite.setScale(3, 3);
+    sprite.setScale(SCALE_X, SCALE_Y);
     sprite.setPosition(position);
 }
