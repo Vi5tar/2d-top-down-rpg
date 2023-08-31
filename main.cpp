@@ -10,9 +10,6 @@ int main()
 {
     GameWorld gameWorld = GameWorld();
 
-    const double targetFPS = 60.0;
-    const double targetFrameTime = 1.0 / targetFPS;
-
     int windowTileWidth = 25;
     int windowTileHeight = 25;
     int tileWidth = 48;
@@ -21,6 +18,7 @@ int main()
     float windowHeight = windowTileHeight * tileHeight;
 
     sf::RenderWindow window(sf::VideoMode(windowWidth, windowHeight), "Dragon Warrior World Map");
+    window.setFramerateLimit(60);
 
     while (window.isOpen())
     {
@@ -61,9 +59,10 @@ int main()
                     tile->sprite.setPosition(j * tileWidth, i * tileHeight);
                     window.draw(tile->sprite);
                 } else {
-                    GameTile *tile = GameTile::getTile(21);
-                    tile->sprite.setPosition(j * tileWidth, i * tileHeight);
-                    window.draw(tile->sprite);
+                    // NOTE: this was causing massive cpu usage when outside the map boundaries were visible in the window
+                    // GameTile *tile = GameTile::getTile(21);
+                    // tile->sprite.setPosition(j * tileWidth, i * tileHeight);
+                    // window.draw(tile->sprite);
                 }
             }
         }
@@ -75,16 +74,6 @@ int main()
         window.draw(gameWorld.player->sprite);
 
         window.display();
-
-        auto endTime = std::chrono::high_resolution_clock::now();
-        std::chrono::duration<double> frameDuration = endTime - startTime;
-
-        // Calculate the time to sleep to achieve the target frame time
-        double sleepTime = targetFrameTime - frameDuration.count();
-        if (sleepTime > 0)
-        {
-            std::this_thread::sleep_for(std::chrono::duration<double>(sleepTime));
-        }
     }
 
     return 0;
