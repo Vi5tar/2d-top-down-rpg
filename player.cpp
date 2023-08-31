@@ -3,8 +3,8 @@
 
 Player::Player()
 {
-    x = 44;
-    y = 51;
+    x = 10;
+    y = 10;
     orientation = Direction::DOWN;
 }
 

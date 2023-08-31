@@ -1,16 +1,11 @@
 #include "gameWorld.h"
-#include "gameTile.h"
+#include "mapFactory.cpp"
 #include "player.cpp"
-#include <vector>
-#include <iostream>
-#include <fstream>
-#include <string>
-#include <sstream>
 
-GameWorld::GameWorld()
+GameWorld::GameWorld(MapName initialMap)
 {
     player = new Player();
-    buildWorldMap();
+    setCurrentMap(initialMap);
 }
 
 bool GameWorld::canMove(Player *player, Direction direction)
@@ -21,15 +16,15 @@ bool GameWorld::canMove(Player *player, Direction direction)
     {
         if (playerX - 1 >= 0)
         {
-            if (worldMap[playerY][playerX - 1]->isWalkable())
+            if (currentMap.tiles[playerY][playerX - 1]->isWalkable())
                 return true;
         }
     }
     else if (direction == Direction::RIGHT)
     {
-        if (playerX + 1 < worldMap[playerY].size())
+        if (playerX + 1 < currentMap.tiles[playerY].size())
         {
-            if (worldMap[playerY][playerX + 1]->isWalkable())
+            if (currentMap.tiles[playerY][playerX + 1]->isWalkable())
                 return true;
         }
     }
@@ -37,15 +32,15 @@ bool GameWorld::canMove(Player *player, Direction direction)
     {
         if (playerY - 1 >= 0)
         {
-            if (worldMap[playerY - 1][playerX]->isWalkable())
+            if (currentMap.tiles[playerY - 1][playerX]->isWalkable())
                 return true;
         }
     }
     else if (direction == Direction::DOWN)
     {
-        if (playerY + 1 < worldMap.size())
+        if (playerY + 1 < currentMap.tiles.size())
         {
-            if (worldMap[playerY + 1][playerX]->isWalkable())
+            if (currentMap.tiles[playerY + 1][playerX]->isWalkable())
                 return true;
         }
     }
@@ -80,19 +75,7 @@ void GameWorld::movePlayerDown()
         player->moveDown();
 }
 
-void GameWorld::buildWorldMap()
+void GameWorld::setCurrentMap(MapName mapName)
 {
-    std::ifstream world("dw-world-map.txt");
-    for(std::string line; getline(world, line);)
-    {
-        std::stringstream ss(line);
-        std::vector<GameTile *> row;
-        for (int i; ss >> i;) {
-            GameTile *tile = GameTile::getTile(i);
-            row.push_back(tile);
-            if (ss.peek() == ' ')
-                ss.ignore();
-        }
-        worldMap.push_back(row);
-    }
+    currentMap = MapFactory::getMap(mapName);
 }

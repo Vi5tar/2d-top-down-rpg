@@ -1,24 +1,23 @@
-#include <SFML/Graphics.hpp>
-#include <vector>
-#include "gameTile.h"
+#include "map.h"
 #include "player.h"
+#include "mapName.h"
 
 #ifndef GAMEWORLD_H
 #define GAMEWORLD_H
 
 class GameWorld
 {
-    void buildWorldMap();
 
 public:
-    std::vector<std::vector<GameTile *>> worldMap;
+    Map currentMap;
     Player* player;
-    GameWorld();
+    GameWorld(MapName);
     void movePlayerLeft();
     void movePlayerRight();
     void movePlayerUp();
     void movePlayerDown();
     bool canMove(Player*, Direction);
+    void setCurrentMap(MapName);
 };
 
 #endif

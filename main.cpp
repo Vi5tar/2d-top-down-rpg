@@ -5,10 +5,11 @@
 #include <thread>
 #include "gameTile.cpp"
 #include "gameWorld.cpp"
+#include "mapName.h"
 
 int main()
 {
-    GameWorld gameWorld = GameWorld();
+    GameWorld gameWorld = GameWorld(MapName::WORLD);
 
     int windowTileWidth = 25;
     int windowTileHeight = 25;
@@ -41,6 +42,10 @@ int main()
                     gameWorld.movePlayerLeft();
                 if (event.key.code == sf::Keyboard::Right)
                     gameWorld.movePlayerRight();
+                if (event.key.code == sf::Keyboard::T)
+                    gameWorld.setCurrentMap(MapName::TANTAGEL);
+                if (event.key.code == sf::Keyboard::W)
+                    gameWorld.setCurrentMap(MapName::WORLD);
             }
         }
 
@@ -53,9 +58,9 @@ int main()
         {
             for (int j = 0; j < windowTileWidth; j++)
             {
-                if (gameWorld.worldMap.size() > (startDrawnWorldY + i) && gameWorld.worldMap[startDrawnWorldY + i].size() > (startDrawnWorldX + j))
+                if (gameWorld.currentMap.tiles.size() > (startDrawnWorldY + i) && gameWorld.currentMap.tiles[startDrawnWorldY + i].size() > (startDrawnWorldX + j))
                 {
-                    GameTile *tile = gameWorld.worldMap[startDrawnWorldY + i][startDrawnWorldX + j];
+                    GameTile *tile = gameWorld.currentMap.tiles[startDrawnWorldY + i][startDrawnWorldX + j];
                     tile->sprite.setPosition(j * tileWidth, i * tileHeight);
                     window.draw(tile->sprite);
                 } else {
