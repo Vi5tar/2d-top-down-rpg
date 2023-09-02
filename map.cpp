@@ -1,6 +1,7 @@
 #include <fstream>
 #include <sstream>
 #include "map.h"
+#include "gameTileFactory.cpp"
 
 Map::Map(std::string mapDefinition, std::map<std::pair<int,int>, Location> portals)
 {
@@ -23,7 +24,7 @@ void Map::buildMap(std::string mapDefinition, std::map<std::pair<int,int>, Locat
             {
                 portalLocation = portals[std::make_pair(x, y)];
             }
-            GameTile *tile = GameTile::getTile(i, isPortal, portalLocation);
+            GameTile *tile = GameTileFactory::getTile(i, isPortal, portalLocation);
             row.push_back(tile);
             if (ss.peek() == ' ')
                 ss.ignore();

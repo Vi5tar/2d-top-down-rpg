@@ -1,4 +1,5 @@
 #include "gameTile.h"
+#include "location.h"
 
 #ifndef PORTAL_H
 #define PORTAL_H

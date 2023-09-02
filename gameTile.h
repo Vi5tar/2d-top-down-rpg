@@ -1,5 +1,4 @@
 #include <SFML/Graphics.hpp>
-#include "location.h"
 
 #ifndef GAMETILE_H
 #define GAMETILE_H
@@ -14,7 +13,6 @@ public:
     GameTile(std::string, bool);
     bool setUpSprite(std::string);
     bool isWalkable();
-    static GameTile *getTile(int, bool, Location);
     virtual bool isPortal();
 };
 
