@@ -4,16 +4,16 @@
 #include <chrono>
 #include <thread>
 #include "gameTile.cpp"
-#include "gameWorld.cpp"
+#include "game.cpp"
 #include "mapName.h"
 #include "windowConfig.h"
 #include "location.cpp"
 
 int main()
 {
-    GameWorld gameWorld = GameWorld(MapName::WORLD, Location(MapName::WORLD, sf::Vector2u(44, 51), Direction::DOWN));
+    Game game = Game(MapName::WORLD, Location(MapName::WORLD, sf::Vector2u(44, 51), Direction::DOWN));
 
-    sf::Vector2u tileSize = gameWorld.currentMap.tiles[0][0]->sprite.getTexture()->getSize();
+    sf::Vector2u tileSize = game.currentMap.tiles[0][0]->sprite.getTexture()->getSize();
     sf::Vector2f scaledTileSize(tileSize.x * SCALE_X, tileSize.y * SCALE_Y);
     float windowWidth = WINDOW_TILES_WIDE * scaledTileSize.x;
     float windowHeight = WINDOW_TILES_HIGH * scaledTileSize.y;
@@ -26,10 +26,10 @@ int main()
         auto startTime = std::chrono::high_resolution_clock::now();
 
         // Game logic and rendering code here
-        if (gameWorld.currentMap.tiles[gameWorld.player->getY()][gameWorld.player->getX()]->isPortal() && gameWorld.player->hasMoved)
+        if (game.currentMap.tiles[game.player->getY()][game.player->getX()]->isPortal() && game.player->hasMoved)
         {
-            Portal *portal = (Portal *)gameWorld.currentMap.tiles[gameWorld.player->getY()][gameWorld.player->getX()];
-            gameWorld.setPlayerLocation(portal->destination);
+            Portal *portal = (Portal *)game.currentMap.tiles[game.player->getY()][game.player->getX()];
+            game.setPlayerLocation(portal->destination);
         }
 
         sf::Event event;
@@ -41,28 +41,28 @@ int main()
             if (event.type == sf::Event::KeyPressed)
             {
                 if (event.key.code == sf::Keyboard::Up)
-                    gameWorld.movePlayerUp();
+                    game.movePlayerUp();
                 if (event.key.code == sf::Keyboard::Down)
-                    gameWorld.movePlayerDown();
+                    game.movePlayerDown();
                 if (event.key.code == sf::Keyboard::Left)
-                    gameWorld.movePlayerLeft();
+                    game.movePlayerLeft();
                 if (event.key.code == sf::Keyboard::Right)
-                    gameWorld.movePlayerRight();
+                    game.movePlayerRight();
             }
         }
 
         window.clear();
 
         //NOTE:: draw the world map
-        int startDrawnWorldX = gameWorld.player->getX() - ((WINDOW_TILES_WIDE / 2));
-        int startDrawnWorldY = gameWorld.player->getY() - ((WINDOW_TILES_HIGH / 2));
+        int startDrawnWorldX = game.player->getX() - ((WINDOW_TILES_WIDE / 2));
+        int startDrawnWorldY = game.player->getY() - ((WINDOW_TILES_HIGH / 2));
         for (int i = 0; i < WINDOW_TILES_HIGH; i++)
         {
             for (int j = 0; j < WINDOW_TILES_WIDE; j++)
             {
-                if (gameWorld.currentMap.tiles.size() > (startDrawnWorldY + i) && gameWorld.currentMap.tiles[startDrawnWorldY + i].size() > (startDrawnWorldX + j))
+                if (game.currentMap.tiles.size() > (startDrawnWorldY + i) && game.currentMap.tiles[startDrawnWorldY + i].size() > (startDrawnWorldX + j))
                 {
-                    GameTile *tile = gameWorld.currentMap.tiles[startDrawnWorldY + i][startDrawnWorldX + j];
+                    GameTile *tile = game.currentMap.tiles[startDrawnWorldY + i][startDrawnWorldX + j];
                     tile->sprite.setPosition(j * scaledTileSize.x, i * scaledTileSize.y);
                     window.draw(tile->sprite);
                 } else {
@@ -77,8 +77,8 @@ int main()
         //NOTE:: draw the player
         sf::Vector2f position((WINDOW_TILES_WIDE / 2) * scaledTileSize.x, (WINDOW_TILES_HIGH / 2) * scaledTileSize.y);
         int step = (int)std::round((std::chrono::duration_cast<std::chrono::milliseconds>(startTime.time_since_epoch()).count() / 100) / 3 % 2);
-        gameWorld.player->setSprite(position, step);
-        window.draw(gameWorld.player->sprite);
+        game.player->setSprite(position, step);
+        window.draw(game.player->sprite);
 
         window.display();
     }

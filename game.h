@@ -3,16 +3,16 @@
 #include "mapName.h"
 #include "location.h"
 
-#ifndef GAMEWORLD_H
-#define GAMEWORLD_H
+#ifndef GAME_H
+#define GAME_H
 
-class GameWorld
+class Game
 {
 
 public:
     Map currentMap;
     Player* player;
-    GameWorld(MapName, Location);
+    Game(MapName, Location);
     void movePlayerLeft();
     void movePlayerRight();
     void movePlayerUp();

@@ -1,14 +1,14 @@
-#include "gameWorld.h"
+#include "game.h"
 #include "mapFactory.cpp"
 #include "player.cpp"
 
-GameWorld::GameWorld(MapName initialMap, Location initialLocation)
+Game::Game(MapName initialMap, Location initialLocation)
 {
     player = new Player();
     setPlayerLocation(initialLocation);
 }
 
-bool GameWorld::canMove(Player *player, Direction direction)
+bool Game::canMove(Player *player, Direction direction)
 {
     int playerX = player->getX();
     int playerY = player->getY();
@@ -47,40 +47,40 @@ bool GameWorld::canMove(Player *player, Direction direction)
     return false;
 }
 
-void GameWorld::movePlayerLeft()
+void Game::movePlayerLeft()
 {
     player->setOrientation(Direction::LEFT);
     if (canMove(player, Direction::LEFT))
         player->moveLeft();
 }
 
-void GameWorld::movePlayerRight()
+void Game::movePlayerRight()
 {
     player->setOrientation(Direction::RIGHT);
     if (canMove(player, Direction::RIGHT))
         player->moveRight();
 }
 
-void GameWorld::movePlayerUp()
+void Game::movePlayerUp()
 {
     player->setOrientation(Direction::UP);
     if (canMove(player, Direction::UP))
         player->moveUp();
 }
 
-void GameWorld::movePlayerDown()
+void Game::movePlayerDown()
 {
     player->setOrientation(Direction::DOWN);
     if (canMove(player, Direction::DOWN))
         player->moveDown();
 }
 
-void GameWorld::setCurrentMap(MapName mapName)
+void Game::setCurrentMap(MapName mapName)
 {
     currentMap = MapFactory::getMap(mapName);
 }
 
-void GameWorld::setPlayerLocation(Location location)
+void Game::setPlayerLocation(Location location)
 {
     setCurrentMap(location.mapName);
     player->setLocation(location);
