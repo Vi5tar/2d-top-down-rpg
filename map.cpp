@@ -3,34 +3,28 @@
 #include "map.h"
 #include "gameTileFactory.cpp"
 
-Map::Map(std::string mapDefinition, std::map<std::pair<int,int>, Location> portals)
+Map::Map(MapName name, std::vector<std::vector<int>> layout, std::map<std::pair<int,int>, Location> portals)
 {
-    buildMap(mapDefinition, portals);
+    this->name = name;
+    build(layout, portals);
 }
 
-void Map::buildMap(std::string mapDefinition, std::map<std::pair<int,int>, Location> portals)
+void Map::build(std::vector<std::vector<int>> mapLayout, std::map<std::pair<int,int>, Location> portals)
 {
-    std::ifstream world(mapDefinition);
-    int y = 0;
-    for(std::string line; getline(world, line);)
+    for(int y = 0; y < mapLayout.size(); y++)
     {
-        std::stringstream ss(line);
         std::vector<GameTile *> row;
-        int x = 0;
-        for (int i; ss >> i;) {
+        for(int x = 0; x < mapLayout[y].size(); x++)
+        {
             bool isPortal = portals.find(std::make_pair(x, y)) != portals.end();
             Location portalLocation;
             if (isPortal)
             {
                 portalLocation = portals[std::make_pair(x, y)];
             }
-            GameTile *tile = GameTileFactory::getTile(i, isPortal, portalLocation);
+            GameTile *tile = GameTileFactory::getTile(mapLayout[y][x], isPortal, portalLocation);
             row.push_back(tile);
-            if (ss.peek() == ' ')
-                ss.ignore();
-            x++;
         }
         tiles.push_back(row);
-        y++;
     }
 }
