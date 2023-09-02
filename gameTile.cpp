@@ -1,14 +1,14 @@
 #include "gameTile.h"
+#include "portal.cpp"
 #include "windowConfig.h"
 
-GameTile::GameTile(std::string textureName, bool walkable, bool exit)
+GameTile::GameTile(std::string textureName, bool walkable)
 {
     if (!setUpSprite(textureName))
     {
         return;
     }
     this->walkable = walkable;
-    isExit = exit;
 }
 
 bool GameTile::setUpSprite(std::string textureName)
@@ -27,75 +27,58 @@ bool GameTile::isWalkable()
     return walkable;
 }
 
-GameTile *GameTile::getTile(int key)
+bool GameTile::isPortal()
 {
-    if (key == 10)
-        return new GameTile("assets/16x16Tiles/dw-grass.png", true, false);
-    if (key == 11)
-        return new GameTile("assets/16x16Tiles/dw-trees.png", true, false);
-    if (key == 12)
-        return new GameTile("assets/16x16Tiles/dw-desert.png", true, false);
-    if (key == 13)
-        return new GameTile("assets/16x16Tiles/dw-hill.png", true, false);
-    if (key == 14)
-        return new GameTile("assets/16x16Tiles/dw-mountain.png", false, false);
-    if (key == 17)
-        return new GameTile("assets/16x16Tiles/dw-bridge.png", true, true);
-    if (key == 18)
-        return new GameTile("assets/16x16Tiles/dw-grassCave.png", true, true);    
-    if (key == 19)
-        return new GameTile("assets/16x16Tiles/dw-grassStairs.png", true, true);
-    if (key == 20)
-        return new GameTile("assets/16x16Tiles/dw-swamp.png", true, false);
-    if (key == 21)
-        return new GameTile("assets/16x16Tiles/dw-water.png", false, false);
-    if (key == 22)
-        return new GameTile("assets/16x16Tiles/dw-nBeach.png", false, false);
-    if (key == 23)
-        return new GameTile("assets/16x16Tiles/dw-eBeach.png", false, false);
-    if (key == 24)
-        return new GameTile("assets/16x16Tiles/dw-sBeach.png", false, false);
-    if (key == 25)
-        return new GameTile("assets/16x16Tiles/dw-wBeach.png", false, false);
-    if (key == 26)
-        return new GameTile("assets/16x16Tiles/dw-neBeach.png", false, false);
-    if (key == 27)
-        return new GameTile("assets/16x16Tiles/dw-seBeach.png", false, false);
-    if (key == 28)
-        return new GameTile("assets/16x16Tiles/dw-swBeach.png", false, false);
-    if (key == 29)
-        return new GameTile("assets/16x16Tiles/dw-nwBeach.png", false, false);
-    if (key == 30)
-        return new GameTile("assets/16x16Tiles/dw-wneBeach.png", false, false);
-    if (key == 31)
-        return new GameTile("assets/16x16Tiles/dw-nesBeach.png", false, false);
-    if (key == 32)
-        return new GameTile("assets/16x16Tiles/dw-wseBeach.png", false, false);
-    if (key == 33)
-        return new GameTile("assets/16x16Tiles/dw-nwsBeach.png", false, false);
-    if (key == 34)
-        return new GameTile("assets/16x16Tiles/dw-nsBeach.png", false, false);
-    if (key == 35)
-        return new GameTile("assets/16x16Tiles/dw-weBeach.png", false, false);
-    if (key == 40)
-        return new GameTile("assets/16x16Tiles/dw-castle.png", true, true);
-    if (key == 41)
-        return new GameTile("assets/16x16Tiles/dw-town.png", true, true);
-    if (key == 50)
-        return new GameTile("assets/16x16Tiles/dw-brick.png", false, true);
-    if (key == 51)
-        return new GameTile("assets/16x16Tiles/dw-redBrickFloor.png", true, true);
-    if (key == 52)
-        return new GameTile("assets/16x16Tiles/dw-electricFloor.png", true, true);
-    if (key == 53)
-        return new GameTile("assets/16x16Tiles/dw-door.png", false, true);
-    if (key == 54)
-        return new GameTile("assets/16x16Tiles/dw-desk.png", false, true);
-    if (key == 55)
-        return new GameTile("assets/16x16Tiles/dw-treasureChest.png", true, true);
-    if (key == 56)
-        return new GameTile("assets/16x16Tiles/dw-brickStairsUp.png", true, true);
-    if (key == 57)
-        return new GameTile("assets/16x16Tiles/dw-brickStairsDown.png", true, true);
-    return new GameTile("", false, false);
+    return false;
+}
+
+GameTile *GameTile::getTile(int key, bool isPortal, Location portalLocation)
+{
+    struct TileData
+    {
+        std::string texturePath;
+        bool walkable;
+    };
+    
+    std::map<int, TileData> tileDataMap;
+    tileDataMap[10] = {"assets/16x16Tiles/dw-grass.png", true};
+    tileDataMap[11] = {"assets/16x16Tiles/dw-trees.png", true};
+    tileDataMap[12] = {"assets/16x16Tiles/dw-desert.png", true};
+    tileDataMap[13] = {"assets/16x16Tiles/dw-hill.png", true};
+    tileDataMap[14] = {"assets/16x16Tiles/dw-mountain.png", false};
+    tileDataMap[17] = {"assets/16x16Tiles/dw-bridge.png", true};
+    tileDataMap[18] = {"assets/16x16Tiles/dw-grassCave.png", true};
+    tileDataMap[19] = {"assets/16x16Tiles/dw-grassStairs.png", true};
+    tileDataMap[20] = {"assets/16x16Tiles/dw-swamp.png", true};
+    tileDataMap[21] = {"assets/16x16Tiles/dw-water.png", false};
+    tileDataMap[22] = {"assets/16x16Tiles/dw-nBeach.png", false};
+    tileDataMap[23] = {"assets/16x16Tiles/dw-eBeach.png", false};
+    tileDataMap[24] = {"assets/16x16Tiles/dw-sBeach.png", false};
+    tileDataMap[25] = {"assets/16x16Tiles/dw-wBeach.png", false};
+    tileDataMap[26] = {"assets/16x16Tiles/dw-neBeach.png", false};
+    tileDataMap[27] = {"assets/16x16Tiles/dw-seBeach.png", false};
+    tileDataMap[28] = {"assets/16x16Tiles/dw-swBeach.png", false};
+    tileDataMap[29] = {"assets/16x16Tiles/dw-nwBeach.png", false};
+    tileDataMap[30] = {"assets/16x16Tiles/dw-wneBeach.png", false};
+    tileDataMap[31] = {"assets/16x16Tiles/dw-nesBeach.png", false};
+    tileDataMap[32] = {"assets/16x16Tiles/dw-wseBeach.png", false};
+    tileDataMap[33] = {"assets/16x16Tiles/dw-nwsBeach.png", false};
+    tileDataMap[34] = {"assets/16x16Tiles/dw-nsBeach.png", false};
+    tileDataMap[35] = {"assets/16x16Tiles/dw-weBeach.png", false};
+    tileDataMap[40] = {"assets/16x16Tiles/dw-castle.png", true};
+    tileDataMap[41] = {"assets/16x16Tiles/dw-town.png", true};
+    tileDataMap[50] = {"assets/16x16Tiles/dw-brick.png", false};
+    tileDataMap[51] = {"assets/16x16Tiles/dw-redBrickFloor.png", true};
+    tileDataMap[52] = {"assets/16x16Tiles/dw-electricFloor.png", true};
+    tileDataMap[53] = {"assets/16x16Tiles/dw-door.png", false};
+    tileDataMap[54] = {"assets/16x16Tiles/dw-desk.png", false};
+    tileDataMap[55] = {"assets/16x16Tiles/dw-treasureChest.png", true};
+    tileDataMap[56] = {"assets/16x16Tiles/dw-brickStairsUp.png", true};
+    tileDataMap[57] = {"assets/16x16Tiles/dw-brickStairsDown.png", true};
+    
+    TileData tileData = tileDataMap[key];
+    if (isPortal)
+        return new Portal(tileData.texturePath, tileData.walkable, portalLocation);
+    else
+        return new GameTile(tileData.texturePath, tileData.walkable);
 }

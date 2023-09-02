@@ -7,10 +7,11 @@
 #include "gameWorld.cpp"
 #include "mapName.h"
 #include "windowConfig.h"
+#include "location.cpp"
 
 int main()
 {
-    GameWorld gameWorld = GameWorld(MapName::WORLD);
+    GameWorld gameWorld = GameWorld(MapName::WORLD, Location(MapName::WORLD, sf::Vector2u(44, 51), Direction::DOWN));
 
     sf::Vector2u tileSize = gameWorld.currentMap.tiles[0][0]->sprite.getTexture()->getSize();
     sf::Vector2f scaledTileSize(tileSize.x * SCALE_X, tileSize.y * SCALE_Y);
@@ -25,6 +26,12 @@ int main()
         auto startTime = std::chrono::high_resolution_clock::now();
 
         // Game logic and rendering code here
+        if (gameWorld.currentMap.tiles[gameWorld.player->getY()][gameWorld.player->getX()]->isPortal() && gameWorld.player->hasMoved)
+        {
+            Portal *portal = (Portal *)gameWorld.currentMap.tiles[gameWorld.player->getY()][gameWorld.player->getX()];
+            gameWorld.setPlayerLocation(portal->destination);
+        }
+
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -41,10 +48,6 @@ int main()
                     gameWorld.movePlayerLeft();
                 if (event.key.code == sf::Keyboard::Right)
                     gameWorld.movePlayerRight();
-                if (event.key.code == sf::Keyboard::T)
-                    gameWorld.setCurrentMap(MapName::TANTAGEL);
-                if (event.key.code == sf::Keyboard::W)
-                    gameWorld.setCurrentMap(MapName::WORLD);
             }
         }
 

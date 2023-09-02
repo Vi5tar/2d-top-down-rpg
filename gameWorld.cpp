@@ -2,10 +2,10 @@
 #include "mapFactory.cpp"
 #include "player.cpp"
 
-GameWorld::GameWorld(MapName initialMap)
+GameWorld::GameWorld(MapName initialMap, Location initialLocation)
 {
     player = new Player();
-    setCurrentMap(initialMap);
+    setPlayerLocation(initialLocation);
 }
 
 bool GameWorld::canMove(Player *player, Direction direction)
@@ -78,4 +78,10 @@ void GameWorld::movePlayerDown()
 void GameWorld::setCurrentMap(MapName mapName)
 {
     currentMap = MapFactory::getMap(mapName);
+}
+
+void GameWorld::setPlayerLocation(Location location)
+{
+    setCurrentMap(location.mapName);
+    player->setLocation(location);
 }
