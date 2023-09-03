@@ -4,7 +4,8 @@
 enum class MapName
 {
     WORLD,
-    TANTAGEL
+    TANTAGEL,
+    TANTAGEL_THRONE_ROOM,
 };
 
 #endif

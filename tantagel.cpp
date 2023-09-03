@@ -42,6 +42,7 @@ Tantagel::Tantagel()
         portals.insert({{x, 0}, Location(MapName::WORLD, sf::Vector2u(44, 51), Direction::DOWN)});
         portals.insert({{x, 31}, Location(MapName::WORLD, sf::Vector2u(44, 51), Direction::DOWN)});
     }
+    portals.insert({{7, 8}, Location(MapName::TANTAGEL_THRONE_ROOM, sf::Vector2u(9, 9), Direction::LEFT)});
     
     build(layout, portals);
 }
