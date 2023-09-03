@@ -2,7 +2,7 @@
 #include "mapFactory.cpp"
 #include "player.cpp"
 
-Game::Game(MapName initialMap, Location initialLocation)
+Game::Game(Location initialLocation)
 {
     player = new Player();
     setPlayerLocation(initialLocation);

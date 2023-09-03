@@ -11,7 +11,7 @@
 
 int main()
 {
-    Game game = Game(MapName::TANTAGEL_THRONE_ROOM, Location(MapName::TANTAGEL_THRONE_ROOM, sf::Vector2u(4, 5), Direction::UP));
+    Game game = Game(Location(MapName::TANTAGEL_THRONE_ROOM, sf::Vector2u(4, 5), Direction::UP));
 
     sf::Vector2u tileSize = game.currentMap.tiles[0][0]->sprite.getTexture()->getSize();
     sf::Vector2f scaledTileSize(tileSize.x * SCALE_X, tileSize.y * SCALE_Y);

@@ -12,7 +12,7 @@ class Game
 public:
     Map currentMap;
     Player* player;
-    Game(MapName, Location);
+    Game(Location);
     void movePlayerLeft();
     void movePlayerRight();
     void movePlayerUp();
