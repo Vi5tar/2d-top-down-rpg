@@ -6,6 +6,7 @@ enum class MapName
     WORLD,
     TANTAGEL,
     TANTAGEL_THRONE_ROOM,
+    TANTAGEL_CELLAR,
 };
 
 #endif
