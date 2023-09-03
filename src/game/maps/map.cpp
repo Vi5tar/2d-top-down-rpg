@@ -1,7 +1,7 @@
 #include <fstream>
 #include <sstream>
 #include "map.h"
-#include "gameTileFactory.cpp"
+#include "factories/gameTileFactory.cpp"
 
 Map::Map(MapName name, std::vector<std::vector<int>> layout, std::map<std::pair<int,int>, Location> portals)
 {

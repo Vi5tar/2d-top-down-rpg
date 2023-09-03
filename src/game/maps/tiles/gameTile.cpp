@@ -1,6 +1,5 @@
 #include "gameTile.h"
-#include "portal.cpp"
-#include "windowConfig.h"
+#include "../../../windowConfig.h"
 
 GameTile::GameTile(std::string textureName, bool walkable)
 {

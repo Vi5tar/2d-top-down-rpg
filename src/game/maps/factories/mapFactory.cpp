@@ -1,9 +1,9 @@
 #include "mapFactory.h"
-#include "map.cpp"
-#include "world.cpp"
-#include "tantagel.cpp"
-#include "tantagelThroneRoom.cpp"
-#include "tantagelCellar.cpp"
+#include "../map.cpp"
+#include "../world.cpp"
+#include "../tantagel.cpp"
+#include "../tantagelThroneRoom.cpp"
+#include "../tantagelCellar.cpp"
 
 Map MapFactory::getMap(MapName mapName)
 {

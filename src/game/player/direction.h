@@ -1,5 +1,5 @@
-#ifndef PLAYERDIRECTION_H
-#define PLAYERDIRECTION_H
+#ifndef DIRECTION_H
+#define DIRECTION_H
 
 enum class Direction
 {

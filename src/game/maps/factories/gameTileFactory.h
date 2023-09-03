@@ -1,5 +1,5 @@
-#include "gameTile.h"
-#include "location.h"
+#include "../tiles/gameTile.h"
+#include "../location.h"
 
 #ifndef GAMETILEFACTORY_H
 #define GAMETILEFACTORY_H

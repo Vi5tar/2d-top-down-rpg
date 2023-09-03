@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 
-#ifndef GAMETILE_H
-#define GAMETILE_H
+#ifndef GAME_TILE_H
+#define GAME_TILE_H
 
 class GameTile
 {

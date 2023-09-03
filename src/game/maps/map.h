@@ -1,7 +1,7 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
-#include "gameTile.h"
-#include "location.h"
+#include "tiles/gameTile.h"
+#include "../player/direction.h"
 
 #ifndef MAP_H
 #define MAP_H

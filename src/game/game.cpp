@@ -1,6 +1,6 @@
 #include "game.h"
-#include "mapFactory.cpp"
-#include "player.cpp"
+#include "maps/factories/mapFactory.cpp"
+#include "player/player.cpp"
 
 Game::Game(Location initialLocation)
 {

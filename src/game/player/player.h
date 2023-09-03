@@ -1,6 +1,6 @@
 #include <SFML/Graphics.hpp>
 #include "direction.h"
-#include "location.h"
+#include "../maps/location.h"
 
 #ifndef PLAYER_H
 #define PLAYER_H

@@ -3,11 +3,12 @@
 #include <iostream>
 #include <chrono>
 #include <thread>
-#include "gameTile.cpp"
-#include "game.cpp"
-#include "mapName.h"
+#include "game/maps/tiles/gameTile.cpp"
+#include "game/maps/tiles/portal.h"
+#include "game/game.cpp"
+#include "game/maps/mapName.h"
 #include "windowConfig.h"
-#include "location.cpp"
+#include "game/maps/location.cpp"
 
 int main()
 {

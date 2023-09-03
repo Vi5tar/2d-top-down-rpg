@@ -1,5 +1,5 @@
 compile:
-	g++ -std=c++11 main.cpp -I/usr/local/Cellar/sfml/2.6.0/include/ -L/usr/local/Cellar/sfml/2.6.0/lib -lsfml-window -lsfml-graphics -lsfml-system -o output/main
+	g++ -std=c++11 src/main.cpp -I/usr/local/Cellar/sfml/2.6.0/include/ -L/usr/local/Cellar/sfml/2.6.0/lib -lsfml-window -lsfml-graphics -lsfml-system -o output/main
 
 run:
 	./output/main

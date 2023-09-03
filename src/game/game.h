@@ -1,7 +1,7 @@
-#include "map.h"
-#include "player.h"
-#include "mapName.h"
-#include "location.h"
+#include "maps/map.h"
+#include "player/player.h"
+#include "maps/mapName.h"
+#include "maps/location.h"
 
 #ifndef GAME_H
 #define GAME_H
