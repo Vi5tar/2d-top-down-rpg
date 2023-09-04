@@ -4,6 +4,7 @@
 #include "../tantagel.cpp"
 #include "../tantagelThroneRoom.cpp"
 #include "../tantagelCellar.cpp"
+#include "../brecconary.cpp"
 
 Map MapFactory::getMap(MapName mapName)
 {
@@ -17,5 +18,7 @@ Map MapFactory::getMap(MapName mapName)
         return TantagelThroneRoom();
     case MapName::TANTAGEL_CELLAR:
         return TantagelCellar();
+    case MapName::BRECCONARY:
+        return Brecconary();
     }
 }

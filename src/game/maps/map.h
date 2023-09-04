@@ -2,6 +2,8 @@
 #include <vector>
 #include "tiles/gameTile.h"
 #include "../player/direction.h"
+#include "mapName.h"
+#include "location.h"
 
 #ifndef MAP_H
 #define MAP_H

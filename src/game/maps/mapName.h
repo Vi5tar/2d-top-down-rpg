@@ -7,6 +7,7 @@ enum class MapName
     TANTAGEL,
     TANTAGEL_THRONE_ROOM,
     TANTAGEL_CELLAR,
+    BRECCONARY,
 };
 
 #endif

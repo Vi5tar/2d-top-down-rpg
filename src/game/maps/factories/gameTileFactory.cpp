@@ -45,6 +45,8 @@ GameTile *GameTileFactory::getTile(int tileNumber, bool isPortal, Location porta
     tileDataMap[56] = {"src/game/assets/16x16Tiles/dw-brickStairsUp.png", true};
     tileDataMap[57] = {"src/game/assets/16x16Tiles/dw-brickStairsDown.png", true};
     tileDataMap[58] = {"src/game/assets/16x16Tiles/dw-greyBrickWall.png", false};
+    tileDataMap[59] = {"src/game/assets/16x16Tiles/dw-armorySign.png", false};
+    tileDataMap[60] = {"src/game/assets/16x16Tiles/dw-innSign.png", false};
     
     TileData tileData = tileDataMap[tileNumber];
     if (isPortal)
