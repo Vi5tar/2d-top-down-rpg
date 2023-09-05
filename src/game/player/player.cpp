@@ -51,7 +51,7 @@ void Player::setOrientation(Direction direction)
 
 void Player::setSprite(sf::Vector2f position, int step)
 {
-    std::string texturePath = "src/game/assets/16x16Tiles/dw-hero-" + std::to_string((int)orientation) + "-" + std::to_string(step) + ".png";
+    std::string texturePath = "src/game/assets/8x8Tiles/ds-hero-" + std::to_string((int)orientation) + "-" + std::to_string(step) + ".png";
     texture.loadFromFile(texturePath);
     sprite.setTexture(texture);
     sprite.setScale(SCALE_X, SCALE_Y);
