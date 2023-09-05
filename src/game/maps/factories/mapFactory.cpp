@@ -6,6 +6,7 @@
 #include "../tantagelCellar.cpp"
 #include "../brecconary.cpp"
 #include "../brecconaryToolShop.cpp"
+#include "../brecconaryHolyWell.cpp"
 
 Map MapFactory::getMap(MapName mapName)
 {
@@ -23,5 +24,7 @@ Map MapFactory::getMap(MapName mapName)
         return Brecconary();
     case MapName::BRECCONARY_TOOL_SHOP:
         return BrecconaryToolShop();
+    case MapName::BRECCONARY_HOLY_WELL:
+        return BrecconaryHolyWell();
     }
 }
