@@ -8,6 +8,7 @@ enum class MapName
     TANTAGEL_THRONE_ROOM,
     TANTAGEL_CELLAR,
     BRECCONARY,
+    BRECCONARY_TOOL_SHOP
 };
 
 #endif
