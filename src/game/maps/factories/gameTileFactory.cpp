@@ -1,5 +1,6 @@
 #include "gameTileFactory.h"
 #include "../tiles/portal.cpp"
+#include "../../../windowConfig.h"
 
 GameTile *GameTileFactory::getTile(int tileNumber, bool isPortal, Location portalDestination)
 {

@@ -10,6 +10,8 @@ enum class MapName
     BRECCONARY,
     BRECCONARY_TOOL_SHOP,
     BRECCONARY_HOLY_WELL,
+    ERDRICKS_CAVE_1,
+    ERDRICKS_CAVE_2,
 };
 
 #endif

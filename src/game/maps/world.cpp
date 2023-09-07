@@ -137,6 +137,7 @@ World::World()
     portals = {
         {{44, 51}, Location(MapName::TANTAGEL, sf::Vector2u(11, 30), Direction::UP)},
         {{49, 49}, Location(MapName::BRECCONARY, sf::Vector2u(1, 16), Direction::RIGHT)},
+        {{29, 20}, Location(MapName::ERDRICKS_CAVE_1, sf::Vector2u(1, 1), Direction::RIGHT)},
     };
 
     build(layout, portals);

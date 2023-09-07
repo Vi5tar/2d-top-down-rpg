@@ -7,6 +7,8 @@
 #include "../brecconary.cpp"
 #include "../brecconaryToolShop.cpp"
 #include "../brecconaryHolyWell.cpp"
+#include "../erdricksCave1.cpp"
+#include "../erdricksCave2.cpp"
 
 Map MapFactory::getMap(MapName mapName)
 {
@@ -26,5 +28,9 @@ Map MapFactory::getMap(MapName mapName)
         return BrecconaryToolShop();
     case MapName::BRECCONARY_HOLY_WELL:
         return BrecconaryHolyWell();
+    case MapName::ERDRICKS_CAVE_1:
+        return ErdricksCave1();
+    case MapName::ERDRICKS_CAVE_2:
+        return ErdricksCave2();
     }
 }
