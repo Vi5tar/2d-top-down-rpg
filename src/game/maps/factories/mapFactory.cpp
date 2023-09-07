@@ -9,6 +9,7 @@
 #include "../brecconaryHolyWell.cpp"
 #include "../erdricksCave1.cpp"
 #include "../erdricksCave2.cpp"
+#include "../garinham.cpp"
 
 Map MapFactory::getMap(MapName mapName)
 {
@@ -32,5 +33,7 @@ Map MapFactory::getMap(MapName mapName)
         return ErdricksCave1();
     case MapName::ERDRICKS_CAVE_2:
         return ErdricksCave2();
+    case MapName::GARINHAM:
+        return Garinham();
     }
 }

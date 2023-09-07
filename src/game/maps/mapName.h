@@ -12,6 +12,7 @@ enum class MapName
     BRECCONARY_HOLY_WELL,
     ERDRICKS_CAVE_1,
     ERDRICKS_CAVE_2,
+    GARINHAM,
 };
 
 #endif
