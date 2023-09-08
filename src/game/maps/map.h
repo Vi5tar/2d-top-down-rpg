@@ -14,11 +14,11 @@ public:
     MapName name;
     std::vector<std::vector<int>> layout;
     std::map<std::pair<int, int>, Location> portals;
-    std::vector<std::vector<GameTile *>> tiles;
+    std::map<std::pair<int, int>, GameTile *> tiles;
     Map(MapName, std::vector<std::vector<int>>, std::map<std::pair<int, int>, Location>);
     // HACK: This gets rid of a "No default constructor exists for class Map" error but I'm not sure if there are unwanted side effects.
     Map() = default;
-    void build(std::vector<std::vector<int>>, std::map<std::pair<int, int>, Location>);
+    void loadTiles(sf::IntRect);
 };
 
 #endif

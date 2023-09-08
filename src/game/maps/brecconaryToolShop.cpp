@@ -13,6 +13,4 @@ BrecconaryToolShop::BrecconaryToolShop()
     portals = {
         {{1, 0}, {MapName::BRECCONARY, sf::Vector2u(23, 24), Direction::UP}}
     };
-
-    build(layout, portals);
 };

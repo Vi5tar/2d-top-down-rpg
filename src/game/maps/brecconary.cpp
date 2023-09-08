@@ -48,6 +48,4 @@ Brecconary::Brecconary()
     };
     portals.insert({{23, 25}, Location(MapName::BRECCONARY_TOOL_SHOP, sf::Vector2u(1, 1), Direction::DOWN)});
     portals.insert({{22, 7}, Location(MapName::BRECCONARY_HOLY_WELL, sf::Vector2u(1, 3), Direction::UP)});
-
-    build(layout, portals);
 }

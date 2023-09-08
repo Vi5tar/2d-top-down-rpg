@@ -6,15 +6,18 @@
 Map::Map(MapName name, std::vector<std::vector<int>> layout, std::map<std::pair<int,int>, Location> portals)
 {
     this->name = name;
-    build(layout, portals);
 }
 
-void Map::build(std::vector<std::vector<int>> mapLayout, std::map<std::pair<int,int>, Location> portals)
+void Map::loadTiles(sf::IntRect loadArea)
 {
-    for(int y = 0; y < mapLayout.size(); y++)
+    if (loadArea.left < 0)
+        loadArea.left = 0;
+    if (loadArea.top < 0)
+        loadArea.top = 0;
+
+    for(int y = loadArea.top; y < loadArea.top + loadArea.height && y < layout.size(); y++)
     {
-        std::vector<GameTile *> row;
-        for(int x = 0; x < mapLayout[y].size(); x++)
+        for(int x = loadArea.left; x < loadArea.left + loadArea.width && x < layout[y].size(); x++)
         {
             bool isPortal = portals.find(std::make_pair(x, y)) != portals.end();
             Location portalLocation;
@@ -22,9 +25,11 @@ void Map::build(std::vector<std::vector<int>> mapLayout, std::map<std::pair<int,
             {
                 portalLocation = portals[std::make_pair(x, y)];
             }
-            GameTile *tile = GameTileFactory::getTile(mapLayout[y][x], isPortal, portalLocation);
-            row.push_back(tile);
+            if (tiles.find({x, y}) == tiles.end())
+            {
+                GameTile *tile = GameTileFactory::getTile(layout[y][x], isPortal, portalLocation);
+                tiles.insert({{x, y}, tile});
+            }
         }
-        tiles.push_back(row);
     }
 }

@@ -16,15 +16,15 @@ bool Game::canMove(Player *player, Direction direction)
     {
         if (playerX - 1 >= 0)
         {
-            if (currentMap.tiles[playerY][playerX - 1]->isWalkable())
+            if (currentMap.tiles[{playerX - 1, playerY}]->isWalkable())
                 return true;
         }
     }
     else if (direction == Direction::RIGHT)
     {
-        if (playerX + 1 < currentMap.tiles[playerY].size())
+        if (playerX + 1 < currentMap.layout[playerY].size())
         {
-            if (currentMap.tiles[playerY][playerX + 1]->isWalkable())
+            if (currentMap.tiles[{playerX + 1, playerY}]->isWalkable())
                 return true;
         }
     }
@@ -32,15 +32,15 @@ bool Game::canMove(Player *player, Direction direction)
     {
         if (playerY - 1 >= 0)
         {
-            if (currentMap.tiles[playerY - 1][playerX]->isWalkable())
+            if (currentMap.tiles[{playerX, playerY - 1}]->isWalkable())
                 return true;
         }
     }
     else if (direction == Direction::DOWN)
     {
-        if (playerY + 1 < currentMap.tiles.size())
+        if (playerY + 1 < currentMap.layout.size())
         {
-            if (currentMap.tiles[playerY + 1][playerX]->isWalkable())
+            if (currentMap.tiles[{playerX, playerY + 1}]->isWalkable())
                 return true;
         }
     }
@@ -52,6 +52,7 @@ void Game::movePlayerLeft()
     player->setOrientation(Direction::LEFT);
     if (canMove(player, Direction::LEFT))
         player->moveLeft();
+        loadUpcomingTiles();
 }
 
 void Game::movePlayerRight()
@@ -59,6 +60,7 @@ void Game::movePlayerRight()
     player->setOrientation(Direction::RIGHT);
     if (canMove(player, Direction::RIGHT))
         player->moveRight();
+        loadUpcomingTiles();
 }
 
 void Game::movePlayerUp()
@@ -66,6 +68,7 @@ void Game::movePlayerUp()
     player->setOrientation(Direction::UP);
     if (canMove(player, Direction::UP))
         player->moveUp();
+        loadUpcomingTiles();
 }
 
 void Game::movePlayerDown()
@@ -73,6 +76,7 @@ void Game::movePlayerDown()
     player->setOrientation(Direction::DOWN);
     if (canMove(player, Direction::DOWN))
         player->moveDown();
+        loadUpcomingTiles();
 }
 
 void Game::setCurrentMap(MapName mapName)
@@ -83,5 +87,16 @@ void Game::setCurrentMap(MapName mapName)
 void Game::setPlayerLocation(Location location)
 {
     setCurrentMap(location.mapName);
+    currentMap.loadTiles(getLoadArea(location.position.x, location.position.y));
     player->setLocation(location);
+}
+
+void Game::loadUpcomingTiles()
+{
+    currentMap.loadTiles(getLoadArea(player->getX(), player->getY()));
+}
+
+sf::IntRect Game::getLoadArea(int x, int y)
+{
+    return sf::IntRect(x - (WINDOW_TILES_WIDE / 2), y - (WINDOW_TILES_HIGH / 2), WINDOW_TILES_WIDE, WINDOW_TILES_HIGH);
 }

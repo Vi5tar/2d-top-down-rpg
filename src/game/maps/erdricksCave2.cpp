@@ -20,6 +20,4 @@ ErdricksCave2::ErdricksCave2()
     portals = {
         {{9, 10}, {MapName::ERDRICKS_CAVE_1, sf::Vector2u(10, 10), Direction::LEFT}}
     };
-
-    build(layout, portals);
 }

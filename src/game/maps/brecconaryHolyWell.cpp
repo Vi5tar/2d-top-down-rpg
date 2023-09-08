@@ -13,6 +13,4 @@ BrecconaryHolyWell::BrecconaryHolyWell()
     portals = {
         {{1, 4}, {MapName::BRECCONARY, sf::Vector2u(22, 7), Direction::DOWN}}
     };
-
-    build(layout, portals);
 };

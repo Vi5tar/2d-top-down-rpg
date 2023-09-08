@@ -14,7 +14,7 @@ int main()
 {
     Game game = Game(Location(MapName::TANTAGEL_THRONE_ROOM, sf::Vector2u(4, 5), Direction::UP));
 
-    sf::Vector2u tileSize = game.currentMap.tiles[0][0]->sprite.getTexture()->getSize();
+    sf::Vector2u tileSize = game.currentMap.tiles.begin()->second->sprite.getTexture()->getSize();
     sf::Vector2f scaledTileSize(tileSize.x * SCALE_X, tileSize.y * SCALE_Y);
     float windowWidth = WINDOW_TILES_WIDE * scaledTileSize.x;
     float windowHeight = WINDOW_TILES_HIGH * scaledTileSize.y;
@@ -27,9 +27,9 @@ int main()
         auto startTime = std::chrono::high_resolution_clock::now();
 
         // Game logic and rendering code here
-        if (game.currentMap.tiles[game.player->getY()][game.player->getX()]->isPortal() && game.player->hasMoved)
+        if (game.currentMap.tiles[{game.player->getX(), game.player->getY()}]->isPortal() && game.player->hasMoved)
         {
-            Portal *portal = (Portal *)game.currentMap.tiles[game.player->getY()][game.player->getX()];
+            Portal *portal = (Portal *)game.currentMap.tiles[{game.player->getX(), game.player->getY()}];
             game.setPlayerLocation(portal->destination);
         }
 
@@ -61,9 +61,9 @@ int main()
         {
             for (int j = 0; j < WINDOW_TILES_WIDE; j++)
             {
-                if (game.currentMap.tiles.size() > (startDrawnWorldY + i) && game.currentMap.tiles[startDrawnWorldY + i].size() > (startDrawnWorldX + j))
+                if (game.currentMap.tiles.find({startDrawnWorldX + j, startDrawnWorldY + i}) != game.currentMap.tiles.end() && game.currentMap.layout.size() > (startDrawnWorldY + i) && game.currentMap.layout[startDrawnWorldY + i].size() > (startDrawnWorldX + j))
                 {
-                    GameTile *tile = game.currentMap.tiles[startDrawnWorldY + i][startDrawnWorldX + j];
+                    GameTile *tile = game.currentMap.tiles[{startDrawnWorldX + j, startDrawnWorldY + i}];
                     tile->sprite.setPosition(j * scaledTileSize.x, i * scaledTileSize.y);
                     window.draw(tile->sprite);
                 } else {

@@ -140,6 +140,4 @@ World::World()
         {{29, 20}, Location(MapName::ERDRICKS_CAVE_1, sf::Vector2u(1, 1), Direction::RIGHT)},
         {{3, 10}, Location(MapName::GARINHAM, sf::Vector2u(1, 14), Direction::RIGHT)},
     };
-
-    build(layout, portals);
 }

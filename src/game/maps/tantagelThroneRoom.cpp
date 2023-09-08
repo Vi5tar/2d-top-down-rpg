@@ -20,6 +20,4 @@ TantagelThroneRoom::TantagelThroneRoom()
     portals = {
         {{9, 9}, Location(MapName::TANTAGEL, sf::Vector2u(7, 8), Direction::RIGHT)},
     };
-
-    build(layout, portals);
 }

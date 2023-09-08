@@ -20,6 +20,4 @@ TantagelCellar::TantagelCellar()
     portals = {
         {{1, 5}, Location(MapName::TANTAGEL, sf::Vector2u(29, 30), Direction::LEFT)},
     };
-
-    build(layout, portals);
 }

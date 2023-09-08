@@ -8,17 +8,20 @@
 
 class Game
 {
+private:
+    sf::IntRect getLoadArea(int, int);
+    void loadUpcomingTiles();
+    bool canMove(Player *, Direction);
+    void setCurrentMap(MapName);
 
 public:
     Map currentMap;
-    Player* player;
+    Player *player;
     Game(Location);
     void movePlayerLeft();
     void movePlayerRight();
     void movePlayerUp();
     void movePlayerDown();
-    bool canMove(Player*, Direction);
-    void setCurrentMap(MapName);
     void setPlayerLocation(Location);
 };
 

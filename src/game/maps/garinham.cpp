@@ -37,6 +37,4 @@ Garinham::Garinham()
             portals.insert({{x, ySize - 1}, Location(MapName::WORLD, sf::Vector2u(3, 10), Direction::DOWN)}); 
         }
     };
-
-    build(layout, portals);
 };
