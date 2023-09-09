@@ -10,6 +10,7 @@
 #include "../erdricksCave1.cpp"
 #include "../erdricksCave2.cpp"
 #include "../garinham.cpp"
+#include "../garinhamInterior.cpp"
 
 Map MapFactory::getMap(MapName mapName)
 {
@@ -35,5 +36,7 @@ Map MapFactory::getMap(MapName mapName)
         return ErdricksCave2();
     case MapName::GARINHAM:
         return Garinham();
+    case MapName::GARINHAM_INTERIOR:
+        return GarinhamInterior();
     }
 }

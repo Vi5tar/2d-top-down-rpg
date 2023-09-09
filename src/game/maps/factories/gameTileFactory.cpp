@@ -50,6 +50,7 @@ GameTile *GameTileFactory::getTile(int tileNumber, bool isPortal, Location porta
     tileDataMap[60] = {TILE_DIRECTORY + "/" + AESTHETIC_PREFIX + "-innSign.png", false};
     tileDataMap[61] = {TILE_DIRECTORY + "/" + AESTHETIC_PREFIX + "-greyBrickWall.png", true};
     tileDataMap[62] = {TILE_DIRECTORY + "/" + AESTHETIC_PREFIX + "-black.png", true};
+    tileDataMap[63] = {TILE_DIRECTORY + "/" + AESTHETIC_PREFIX + "-black.png", false};
     
     TileData tileData = tileDataMap[tileNumber];
     if (isPortal)

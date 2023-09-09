@@ -13,6 +13,7 @@ enum class MapName
     ERDRICKS_CAVE_1,
     ERDRICKS_CAVE_2,
     GARINHAM,
+    GARINHAM_INTERIOR,
 };
 
 #endif
