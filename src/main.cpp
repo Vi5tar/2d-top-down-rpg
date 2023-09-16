@@ -88,6 +88,18 @@ int main()
         game.player->setSprite(position, step);
         window.draw(game.player->sprite);
 
+        if (devMode)
+        {
+            //NOTE:: draw the player's coordinates
+            sf::Font font;
+            font.loadFromFile(FONT_DIRECTORY + "/ensign-flandry-font/EnsignFlandry-3zda8.ttf");
+            sf::Text text2;
+            text2.setFont(font);
+            text2.setString(std::to_string(game.player->getX()) + ", " + std::to_string(game.player->getY()));
+            text2.setFillColor(sf::Color::White);
+            window.draw(text2);
+        }
+
         window.display();
     }
 
