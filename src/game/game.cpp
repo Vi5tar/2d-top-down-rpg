@@ -100,3 +100,30 @@ sf::IntRect Game::getLoadArea(int x, int y)
 {
     return sf::IntRect(x - (WINDOW_TILES_WIDE / 2), y - (WINDOW_TILES_HIGH / 2), WINDOW_TILES_WIDE, WINDOW_TILES_HIGH);
 }
+
+void Game::saveState()
+{
+    std::ofstream saveFile;
+    saveFile.open("save.txt");
+    saveFile << (int)currentMap.name << std::endl;
+    saveFile << player->getX() << std::endl;
+    saveFile << player->getY() << std::endl;
+    saveFile << (int)player->getOrientation() << std::endl;
+    saveFile.close();
+}
+
+void Game::loadState()
+{
+    std::ifstream saveFile;
+    saveFile.open("save.txt");
+    int mapName;
+    int playerX;
+    int playerY;
+    int playerOrientation;
+    saveFile >> mapName;
+    saveFile >> playerX;
+    saveFile >> playerY;
+    saveFile >> playerOrientation;
+    saveFile.close();
+    setPlayerLocation(Location((MapName)mapName, sf::Vector2u(playerX, playerY), (Direction)playerOrientation));
+}

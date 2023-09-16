@@ -20,6 +20,11 @@ int Player::getY()
     return y;
 }
 
+Direction Player::getOrientation()
+{
+    return orientation;
+}
+
 void Player::moveLeft()
 {
     x--;

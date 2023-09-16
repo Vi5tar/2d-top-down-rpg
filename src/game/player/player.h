@@ -18,6 +18,7 @@ public:
     Player();
     int getX();
     int getY();
+    Direction getOrientation();
     void moveLeft();
     void moveRight();
     void moveUp();

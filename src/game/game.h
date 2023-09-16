@@ -23,6 +23,8 @@ public:
     void movePlayerUp();
     void movePlayerDown();
     void setPlayerLocation(Location);
+    void saveState();
+    void loadState();
 };
 
 #endif
