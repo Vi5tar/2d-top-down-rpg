@@ -12,7 +12,7 @@
 
 int main()
 {
-    bool devMode = true;
+    bool devMode = false;
 
     Game game = Game(Location(MapName::TANTAGEL_THRONE_ROOM, sf::Vector2u(4, 5), Direction::UP));
     if (devMode)

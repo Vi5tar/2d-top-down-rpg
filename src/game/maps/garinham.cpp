@@ -39,4 +39,5 @@ Garinham::Garinham()
     };
     portals.insert({{18, 9}, Location(MapName::GARINHAM_INTERIOR, sf::Vector2u(17, 7), Direction::UP)});
     portals.insert({{4, 3}, Location(MapName::GARINHAM_INTERIOR, sf::Vector2u(3, 1), Direction::DOWN)});
+    portals.insert({{20, 0}, Location(MapName::GARINS_GRAVE_1, sf::Vector2u(7, 12), Direction::RIGHT)});
 };

@@ -11,6 +11,10 @@
 #include "../erdricksCave2.cpp"
 #include "../garinham.cpp"
 #include "../garinhamInterior.cpp"
+#include "../garinsGrave1.cpp"
+#include "../garinsGrave2.cpp"
+#include "../garinsGrave3.cpp"
+#include "../garinsGrave4.cpp"
 
 Map MapFactory::getMap(MapName mapName)
 {
@@ -38,5 +42,13 @@ Map MapFactory::getMap(MapName mapName)
         return Garinham();
     case MapName::GARINHAM_INTERIOR:
         return GarinhamInterior();
+    case MapName::GARINS_GRAVE_1:
+        return GarinsGrave1();
+    case MapName::GARINS_GRAVE_2:
+        return GarinsGrave2();
+    case MapName::GARINS_GRAVE_3:
+        return GarinsGrave3();
+    case MapName::GARINS_GRAVE_4:
+        return GarinsGrave4();
     }
 }
