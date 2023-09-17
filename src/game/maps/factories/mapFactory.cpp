@@ -15,6 +15,7 @@
 #include "../garinsGrave2.cpp"
 #include "../garinsGrave3.cpp"
 #include "../garinsGrave4.cpp"
+#include "../kol.cpp"
 
 Map MapFactory::getMap(MapName mapName)
 {
@@ -50,5 +51,7 @@ Map MapFactory::getMap(MapName mapName)
         return GarinsGrave3();
     case MapName::GARINS_GRAVE_4:
         return GarinsGrave4();
+    case MapName::KOL:
+        return Kol();
     }
 }

@@ -18,6 +18,7 @@ enum class MapName
     GARINS_GRAVE_2,
     GARINS_GRAVE_3,
     GARINS_GRAVE_4,
+    KOL,
 };
 
 #endif

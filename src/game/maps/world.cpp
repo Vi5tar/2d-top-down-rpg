@@ -139,5 +139,6 @@ World::World()
         {{49, 49}, Location(MapName::BRECCONARY, sf::Vector2u(1, 16), Direction::RIGHT)},
         {{29, 20}, Location(MapName::ERDRICKS_CAVE_1, sf::Vector2u(1, 1), Direction::RIGHT)},
         {{3, 10}, Location(MapName::GARINHAM, sf::Vector2u(1, 14), Direction::RIGHT)},
+        {{105, 18}, Location(MapName::KOL, sf::Vector2u(20, 24), Direction::UP)},
     };
 }
