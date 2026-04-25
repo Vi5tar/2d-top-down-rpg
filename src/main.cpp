@@ -12,11 +12,7 @@
 
 int main()
 {
-    bool devMode = false;
-
     Game game = Game(Location(MapName::TANTAGEL_THRONE_ROOM, sf::Vector2u(4, 5), Direction::UP));
-    if (devMode)
-        game.loadState();
 
     sf::Vector2u tileSize = game.currentMap.tiles.begin()->second->sprite.getTexture()->getSize();
     sf::Vector2f scaledTileSize(tileSize.x * SCALE_X, tileSize.y * SCALE_Y);
@@ -54,8 +50,10 @@ int main()
                 if (event.key.code == sf::Keyboard::Right)
                     game.movePlayerRight();
                 
-                if (event.key.code == sf::Keyboard::S && devMode)
+                if (event.key.code == sf::Keyboard::S && game.inDevMode())
                     game.saveState();
+                if (event.key.code == sf::Keyboard::D && game.inDevMode())
+                    game.execute(DeveloperCommand::TOGGLE_DOORS_OPEN);
             }
         }
 
@@ -88,7 +86,7 @@ int main()
         game.player->setSprite(position, step);
         window.draw(game.player->sprite);
 
-        if (devMode)
+        if (game.inDevMode())
         {
             //NOTE:: draw the player's coordinates
             sf::Font font;

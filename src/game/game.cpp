@@ -1,11 +1,15 @@
 #include "game.h"
 #include "maps/factories/mapFactory.cpp"
 #include "player/player.cpp"
+#include "config/development.h"
 
 Game::Game(Location initialLocation)
 {
     player = new Player();
-    setPlayerLocation(initialLocation);
+    if (development.enabled())
+        loadState();
+    else
+        setPlayerLocation(initialLocation);
 }
 
 bool Game::canMove(Player *player, Direction direction)
@@ -126,4 +130,15 @@ void Game::loadState()
     saveFile >> playerOrientation;
     saveFile.close();
     setPlayerLocation(Location((MapName)mapName, sf::Vector2u(playerX, playerY), (Direction)playerOrientation));
+}
+
+bool Game::inDevMode()
+{
+    return development.enabled();
+}
+
+void Game::execute(DeveloperCommand command)
+{
+    if (command == DeveloperCommand::TOGGLE_DOORS_OPEN)
+        development.toggleDoorsOpen();
 }
